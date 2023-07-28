@@ -2,6 +2,7 @@
 COMANDO VISUAL STUDIO CODE
 - control + s -> Guardar Archivo que se está editando.
 - control + k + c -> Comentarios en el archivo.
+- control + k + u -> Descomentar en el archivo
 - alt + z -> ajustar el texto o codigo al tamaño de la ventana.
 
 COMANDOS PYTON
