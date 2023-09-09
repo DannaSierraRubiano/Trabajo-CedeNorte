@@ -7,6 +7,9 @@ def registrar_cliente (cedula):
     nombres.append(nombre)
     print("Cliente registrado correctamente")
 
+def validandoExistenciaUsuario(cedula):
+    return (cedula in cedulas)
+
 nombres = []
 cedulas = []
 compras = []
@@ -36,7 +39,7 @@ while (True):
     if(opcion=="1"):
         print("Registrando una nueva compra")
         cedula =input("Ingrese su cedula: ")
-        if((cedula in cedulas)==False):
+        if(validandoExistenciaUsuario(cedula)==False):
             registrar_cliente(cedula) #Agregando cedula
             productos=input("Ingrese los productos separados por coma (,): ")
             arr_productos=productos.split (",")
@@ -51,19 +54,30 @@ while (True):
             print(compras)
     elif(opcion=="2"):
         print("Consultando compras del cliente: ")
+        if(validandoExistenciaUsuario(cedula)):
+            posicion=cedulas.index(cedula)
+            if(len(compras[posicion]) == 0):
+                print("El cliente no tiene compras registradas")
+            else:
+                print("Estas son las compras que ha realizado el cliente: ")
+                print(compras[posicion])
+        else:
+            registrar_cliente(cedula)
+
     elif(opcion=="3"):
         print("Editando información del cliente: ")
     elif(opcion=="4"):
         print("Mostrando información del cliente: ")
         if(len(cedulas)!=0):
             cedula = input("Ingresa la cedula que deseas ver:  ")
-            if((cedula in cedulas)==True):
+            if(validandoExistenciaUsuario(cedula)==True):
                 print(" -- El nombre del cliente es:  "+nombres[cedulas.index(cedula)]+ " identificado con la cedula:  "+cedula)
             else:
                 print("Registrando al cliente...")
                 registrar_cliente(cedula)
     elif(opcion=="5"):
         print("Apagando el sistema...")
+        break
     else:
         print("¡Opción incorrecta! Ingrese una nueva opción...")
 
